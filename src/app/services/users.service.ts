@@ -6,10 +6,10 @@ import { User } from "../models/user";
 export class UsersService {
 
     private users: User[] = [
-        { firstName: "John", lastName: "Johnson", email: "jjohnson@mail.com", age: "32"},
-        { firstName: "Jack", lastName: "Jackson", email: "jjackson@mail.com", age: "25"},
-        { firstName: "Lois", lastName: "Lane", email: "llane@mail.com", age: "27"},
-        { firstName: "Kate", lastName: "King", email: "kking@mail.com", age: "30"}
+        { id: 1, firstName: "John", lastName: "Johnson", email: "jjohnson@mail.com", age: "32"},
+        { id: 2, firstName: "Jack", lastName: "Jackson", email: "jjackson@mail.com", age: "25"},
+        { id: 3, firstName: "Lois", lastName: "Lane", email: "llane@mail.com", age: "27"},
+        { id: 4, firstName: "Kate", lastName: "King", email: "kking@mail.com", age: "30"}
     ]
 
     getUsers(): User[] {
@@ -17,7 +17,24 @@ export class UsersService {
     }
 
     addUser(user: User) {
-        // Change variable user to use adding without class constructor
-        this.users.push(user);
+        let usr = user;
+        // If user has no id then add it to list
+        if (usr.id === undefined || usr.id === null) {
+            usr.id = this.users.length + 1;
+            // Change variable user to use adding without class constructor
+            this.users.push(usr);
+        } else {
+            // Call method to change existing user
+            this.editUser(usr);
+        }
+    }
+
+    // Method which allows to edit existing user
+    editUser(user: User) {
+        let i: number = this.users.findIndex(item => item.id === user.id);
+
+        if (i !== -1) {
+            this.users[i] = user;
+        }
     }
 }
