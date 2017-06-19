@@ -5,10 +5,10 @@ export class User {
     public age: string;
 
     constructor(
-        firstName: string,
-        lastName: string,
-        email: string,
-        age: string
+        firstName?: string,
+        lastName?: string,
+        email?: string,
+        age?: string
     ) {
         this.firstName = firstName;
         this.lastName = lastName;

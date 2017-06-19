@@ -16,7 +16,8 @@ export class UsersService {
         return this.users;
     }
 
-    addUser(firstName: string, lastName: string, email: string, age: string) {
-        this.users.push(new User(firstName, lastName, email, age));
+    addUser(user: User) {
+        // Change variable user to use adding without class constructor
+        this.users.push(user);
     }
 }

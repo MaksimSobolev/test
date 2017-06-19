@@ -1,29 +1,30 @@
 <!-- Display all users from user service -->
 <ul>
-    <li *ngFor="let user of users">
-        {{user.firstName}} | {{user.lastName}}
-    </li>
+    <ng-template ngFor let-user [ngForOf]="users">
+        <li>
+            {{user.firstName}} | {{user.lastName}}
+        </li>
+    </ng-template>
 </ul>
 <div>
-    <!-- Added template-driven form to home.component -->
-    <!-- define #userForm="ngForm" as form object (ngSumbit) calls method after submitting form -->
-    <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit($event, userForm)">
+    <!-- Added data-driven form instead of template-driven in home.component -->
+    <!-- define formGroup directive and pass variable of form group -->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit($event, userForm)" novalidate>
         <div>
             <label for="firstName">First Name:</label>
-            <input id="firstName" name="firstName" type="text" ngModel required>
+            <input id="firstName" formControlName="firstName" type="text" >
         </div>
         <div>
             <label for="lastName">Last Name:</label>
-            <input id="lastName" name="lastName" type="text" ngModel required>
+            <input id="lastName" formControlName="lastName" type="text" >
         </div>
         <div>
             <label for="email">Email:</label>
-            <input id="email" name="email" type="email" ngModel required 
-                   pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}">
+            <input id="email" formControlName="email" type="email" >
         </div>
         <div>
             <label for="age">Age:</label>
-            <input id="age" name="age" type="text" ngModel>
+            <input id="age" formControlName="age" type="text">
         </div>
         <div>
             <input type="submit" value="submit" [disabled]="userForm.invalid">

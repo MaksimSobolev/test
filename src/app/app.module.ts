@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+// Added import of ReactiveFormsModule to work with data-driven forms
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { RoutingModule } from "./routing.module";
 
@@ -33,6 +34,7 @@ import { UsersService } from "./services/users.service";
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         RoutingModule
     ],
     providers: [UsersService],
